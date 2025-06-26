@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "11111111-aaaa-bbbb-cccc-000000000001",
+    "name": "Alumnos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+"_exporter_id": "7132217"
+  },
+  "item": [
+    {
+      "name": "getAlumnos",
+      "request": {
+        "method": "GET",
+	"header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/alumnos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "alumnos"]
+        
+      }
+    },
+"response": []
+    },
+    {
+      "name": "getAlumnosxId",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/alumnos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "alumnos", "1"]
+        
+      }
+    },
+"response": []
+},
+    {
+      "name": "insertarAlumnos",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuarioID\": 10,\n  \"nombre\": \"Carla\",\n  \"apellido\": \"Ramírez\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/alumnos",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "alumnos"]
+        }
+     			},
+			"response": []
+
+    },
+    {
+      "name": "updateAlumnos",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usuarioID\": 10,\n  \"nombre\": \"Carla\",\n  \"apellido\": \"Mendoza\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/alumnos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "alumnos", "1"]
+        }
+      },
+			"response": []
+    },
+    {
+      "name": "eliminarAlumnos",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:8080/api/alumnos/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "alumnos", "1"]
+        }
+      },
+"response": []
+    }
+  ]
+}
