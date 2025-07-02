@@ -34,9 +34,9 @@ public class AlumnoController {
 	
 	@GetMapping("/alumno/{AlumnoId}") // consulta y devuelve el empleado por ID
 	public ResponseEntity<AlumnoModel> getAlumnoId(@PathVariable(value = "AlumnoId") Long alumnoId)
-	         throws ResourceNotFoundException{
+	         throws ResourceNotFoundException {
 		AlumnoModel alumno = alumnoRepository.findById(alumnoId).orElseThrow(()->
-		new  ResourceNotFoundException("Alumno no encontrado por ID: " + alumnoId));
+		new  ResourceNotFoundException ("Alumno no encontrado por ID: " + alumnoId));
 		return ResponseEntity.ok(alumno);
 	
 	}

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.isil.edu.pe.exceptions.ResourceNotFoundException;
+
 import com.isil.edu.pe.model.ProfesorModel;
 import com.isil.edu.pe.repository.ProfesorRepository;
 
@@ -61,7 +61,7 @@ public class ProfesorController {
 	}
 	
 	@DeleteMapping("/profesor/{ProfesorId}") // se utiliza para la eliminación del profesor por ID
-	public Map<String,Boolean> deleteProfesor(@PathVariable(value = "ProfesorId")Long profesorId)
+	public Map<String,Boolean> deleteProfesor(@PathVariable(value = "ProfesorId")Long ProfesorId)
 	        throws ResourceNotFoundException
 	
 	{

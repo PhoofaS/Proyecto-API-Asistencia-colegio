@@ -68,16 +68,16 @@ public String getCorreoElectronico() {
 }
 
 public void setCorreoElectronico(String NuevoCorreoElectronico) {
-	CorreoElectroico = NuevoCorreoElectronico;
+	CorreoElectronico = NuevoCorreoElectronico;
 }
   
 @Column(name = "telefono")
   
 public Long getTelefono() {
-  return telefono;
+  return Telefono;
 }
 
 public void setTelefono(Long telefono) {
-  this.telefono = telefono;
+  this.Telefono = telefono;
 }
 }
