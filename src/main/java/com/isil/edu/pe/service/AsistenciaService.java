@@ -3,7 +3,6 @@ package com.isil.edu.pe.service;
 import com.isil.edu.pe.exceptions.ResourceNotFoundException;
 import com.isil.edu.pe.model.AsistenciaModel;
 import com.isil.edu.pe.repository.AsistenciaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +12,6 @@ public class AsistenciaService {
 
     private final AsistenciaRepository asistenciaRepository;
 
-    @Autowired
     public AsistenciaService(AsistenciaRepository asistenciaRepository) {
         this.asistenciaRepository = asistenciaRepository;
     }
@@ -22,7 +20,7 @@ public class AsistenciaService {
         return asistenciaRepository.findAll();
     }
 
-    public AsistenciaModel obtenerAsistenciaPorId(Long id) {
+    public AsistenciaModel obtenerAsistenciaPorId(Long id) throws ResourceNotFoundException {
         return asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
     }
@@ -31,7 +29,7 @@ public class AsistenciaService {
         return asistenciaRepository.save(asistencia);
     }
 
-    public AsistenciaModel actualizarAsistencia(Long id, AsistenciaModel asistenciaDetalles) {
+    public AsistenciaModel actualizarAsistencia(Long id, AsistenciaModel asistenciaDetalles) throws ResourceNotFoundException {
         AsistenciaModel asistencia = asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
 
@@ -43,7 +41,7 @@ public class AsistenciaService {
         return asistenciaRepository.save(asistencia);
     }
 
-    public void eliminarAsistencia(Long id) {
+    public void eliminarAsistencia(Long id) throws ResourceNotFoundException {
         AsistenciaModel asistencia = asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
         

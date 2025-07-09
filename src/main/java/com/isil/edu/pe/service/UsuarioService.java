@@ -1,8 +1,7 @@
-package service;
+package com.isil.edu.pe.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.isil.edu.pe.exceptions.ResourceNotFoundException;
 import com.isil.edu.pe.model.UsuarioModel;
@@ -13,7 +12,6 @@ public class UsuarioService {
 	
 	private final UsuarioRepository usuarioRepository;
 	
-	@Autowired
 	public UsuarioService(UsuarioRepository usuarioRepository) {
 		this.usuarioRepository = usuarioRepository;
 	}
@@ -22,7 +20,7 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 	
-	public UsuarioModel obtenerUsuarioPorId(Long id) {
+	public UsuarioModel obtenerUsuarioPorId(Long id) throws ResourceNotFoundException {
 		return usuarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + id));
 	}
@@ -31,7 +29,7 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 	
-	public UsuarioModel actualizarUsuario(Long id, UsuarioModel usuarioDetalles) {
+	public UsuarioModel actualizarUsuario(Long id, UsuarioModel usuarioDetalles) throws ResourceNotFoundException {
 		UsuarioModel usuario = usuarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + id));
 		
@@ -42,7 +40,7 @@ public class UsuarioService {
 		
 		return usuarioRepository.save(usuario);
 	}
-	public void eliminarUsuario(Long id) {
+	public void eliminarUsuario(Long id) throws ResourceNotFoundException {
 		UsuarioModel usuario = usuarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID :" + id));
 		usuarioRepository.delete(usuario);

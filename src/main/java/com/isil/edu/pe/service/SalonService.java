@@ -1,8 +1,7 @@
-package service;
+package com.isil.edu.pe.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.isil.edu.pe.exceptions.ResourceNotFoundException;
 import com.isil.edu.pe.model.SalonModel;
@@ -13,7 +12,6 @@ public class SalonService {
 	
 	private final SalonRepository salonRepository;
 	
-	@Autowired
 	public SalonService(SalonRepository salonRepository) {
 		this.salonRepository = salonRepository;
 	}
@@ -22,7 +20,7 @@ public class SalonService {
 		return salonRepository.findAll();
 	}
 	
-	public SalonModel obtenerSalonPorId(Long id) {
+	public SalonModel obtenerSalonPorId(Long id) throws ResourceNotFoundException {
 		return salonRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Salon no encontrado con ID: " + id));
 	}
@@ -31,15 +29,15 @@ public class SalonService {
 		return salonRepository.save(salon);
 	}
 	
-	public SalonModel actualizarSalon(Long id, SalonModel salonDetalles) {
+	public SalonModel actualizarSalon(Long id, SalonModel salonDetalles) throws ResourceNotFoundException {
 		SalonModel salon = salonRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Salon no encontrado con ID: " + id));
 		
-		salon.setNombre(salonDetalles.getNombre());
+		salon.setNombreSalon(salonDetalles.getNombreSalon());
 		
 		return salonRepository.save(salon);
 	}
-	public void eliminarSalon(Long id) {
+	public void eliminarSalon(Long id) throws ResourceNotFoundException {
 		SalonModel salon = salonRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Salon no encontrado con ID :" + id));
 		salonRepository.delete(salon);

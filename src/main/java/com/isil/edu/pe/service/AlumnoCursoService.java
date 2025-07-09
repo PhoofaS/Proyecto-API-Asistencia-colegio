@@ -1,4 +1,4 @@
-package service;
+package com.isil.edu.pe.service;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import com.isil.edu.pe.repository.AlumnoCursoRepository;
 @Service
 public class AlumnoCursoService {
 	
-	private final AlumnoCursoRepository alumnoCursoRepository;
+	private final AlumnoCursoRepository AlumnoCursoRepository = null;
 	
 	@Autowired
     private AlumnoCursoRepository alumnoCursoRepository;
@@ -20,7 +20,7 @@ public class AlumnoCursoService {
         return alumnoCursoRepository.findAll();
     }
 
-    public AlumnoCursoModel obtenerAlumnoCursoPorId(Long id) {
+    public AlumnoCursoModel obtenerAlumnoCursoPorId(Long id) throws ResourceNotFoundException {
         return alumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Alumno-Curso no encontrada con ID: " + id));
     }
@@ -29,17 +29,17 @@ public class AlumnoCursoService {
         return alumnoCursoRepository.save(alumnoCurso);
     }
 
-    public AlumnoCursoModel actualizarAlumnoCurso(Long id, AlumnoCursoModel alumnoCursoDetalles) {
+    public AlumnoCursoModel actualizarAlumnoCurso(Long id, AlumnoCursoModel alumnoCursoDetalles) throws ResourceNotFoundException {
         AlumnoCursoModel alumnoCurso = AlumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Alumno-Curso no encontrada con ID: " + id));
 
-        alumnoCurso.setAlumno(alumnoCursoDetalles.getAlumno());
-        alumnoCurso.setCurso(alumnoCursoDetalles.getCurso());
+        alumnoCurso.setAlumnoID(alumnoCursoDetalles.getAlumnoID());
+        alumnoCurso.setCursoID(alumnoCursoDetalles.getCursoID());
 
         return alumnoCursoRepository.save(alumnoCurso);
     }
 
-    public void eliminarAlumnoCurso(Long id) {
+    public void eliminarAlumnoCurso(Long id) throws ResourceNotFoundException {
         AlumnoCursoModel alumnoCurso = alumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Alumno-Curso no encontrada con ID: " + id));
         alumnoCursoRepository.delete(alumnoCurso);
