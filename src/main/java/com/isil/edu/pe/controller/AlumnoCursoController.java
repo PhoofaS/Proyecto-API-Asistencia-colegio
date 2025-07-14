@@ -25,7 +25,7 @@ public class AlumnoCursoController {
 
     // Obtener uno por ID
     @GetMapping("/alumnocurso/{id}")
-    public ResponseEntity<AlumnoCursoModel> getAlumnoCursoById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<AlumnoCursoModel> getAlumnoCursoById(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         AlumnoCursoModel alumnoCurso = alumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("AlumnoCurso no encontrado con ID: " + id));
@@ -40,7 +40,7 @@ public class AlumnoCursoController {
 
     // Actualizar registro existente
     @PutMapping("/alumnocurso/{id}")
-    public ResponseEntity<AlumnoCursoModel> updateAlumnoCurso(@PathVariable Long id,
+    public ResponseEntity<AlumnoCursoModel> updateAlumnoCurso(@PathVariable Integer id,
             @Validated @RequestBody AlumnoCursoModel alumnoCursoDetails) throws ResourceNotFoundException {
         AlumnoCursoModel alumnoCurso = alumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("AlumnoCurso no encontrado con ID: " + id));
@@ -53,7 +53,7 @@ public class AlumnoCursoController {
 
     // Eliminar registro
     @DeleteMapping("/alumnocurso/{id}")
-    public Map<String, Boolean> deleteAlumnoCurso(@PathVariable Long id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteAlumnoCurso(@PathVariable Integer id) throws ResourceNotFoundException {
         AlumnoCursoModel alumnoCurso = alumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("AlumnoCurso no encontrado con ID: " + id));
 

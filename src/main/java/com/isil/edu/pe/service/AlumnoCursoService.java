@@ -20,7 +20,7 @@ public class AlumnoCursoService {
         return alumnoCursoRepository.findAll();
     }
 
-    public AlumnoCursoModel obtenerAlumnoCursoPorId(Long id) throws ResourceNotFoundException {
+    public AlumnoCursoModel obtenerAlumnoCursoPorId(Integer id) throws ResourceNotFoundException {
         return alumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Alumno-Curso no encontrada con ID: " + id));
     }
@@ -29,7 +29,7 @@ public class AlumnoCursoService {
         return alumnoCursoRepository.save(alumnoCurso);
     }
 
-    public AlumnoCursoModel actualizarAlumnoCurso(Long id, AlumnoCursoModel alumnoCursoDetalles) throws ResourceNotFoundException {
+    public AlumnoCursoModel actualizarAlumnoCurso(Integer id, AlumnoCursoModel alumnoCursoDetalles) throws ResourceNotFoundException {
         AlumnoCursoModel alumnoCurso = AlumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Alumno-Curso no encontrada con ID: " + id));
 
@@ -39,7 +39,7 @@ public class AlumnoCursoService {
         return alumnoCursoRepository.save(alumnoCurso);
     }
 
-    public void eliminarAlumnoCurso(Long id) throws ResourceNotFoundException {
+    public void eliminarAlumnoCurso(Integer id) throws ResourceNotFoundException {
         AlumnoCursoModel alumnoCurso = alumnoCursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Alumno-Curso no encontrada con ID: " + id));
         alumnoCursoRepository.delete(alumnoCurso);

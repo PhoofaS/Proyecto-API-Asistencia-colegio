@@ -33,7 +33,7 @@ public class AlumnoController {
 	}
 	
 	@GetMapping("/alumno/{AlumnoId}") // consulta y devuelve el empleado por ID
-	public ResponseEntity<AlumnoModel> getAlumnoId(@PathVariable(value = "AlumnoId") Long alumnoId)
+	public ResponseEntity<AlumnoModel> getAlumnoId(@PathVariable(value = "AlumnoId") Integer alumnoId)
 	         throws ResourceNotFoundException {
 		AlumnoModel alumno = alumnoRepository.findById(alumnoId).orElseThrow(()->
 		new  ResourceNotFoundException ("Alumno no encontrado por ID: " + alumnoId));
@@ -47,7 +47,7 @@ public class AlumnoController {
 	}
 	
 	@PutMapping("/alumno/{AlumnoId}")// se usa para actualizar los alumnos
-	public  ResponseEntity<AlumnoModel> updateAlumno(@PathVariable(value = "AlumnoId")Long alumnoId,
+	public  ResponseEntity<AlumnoModel> updateAlumno(@PathVariable(value = "AlumnoId")Integer alumnoId,
 			@Validated @RequestBody AlumnoModel alumnoDetails) throws ResourceNotFoundException{
 		
 	AlumnoModel alumno = alumnoRepository.findById(alumnoId)
@@ -61,7 +61,7 @@ public class AlumnoController {
 	}
 	
 	@DeleteMapping("/alumno/{AlumnoId}") // se utiliza para la eliminación del alumno por ID
-	public Map<String,Boolean> deleteAlumno(@PathVariable(value = "AlumnoId")Long alumnoId)
+	public Map<String,Boolean> deleteAlumno(@PathVariable(value = "AlumnoId")Integer alumnoId)
 	        throws ResourceNotFoundException
 	
 	{

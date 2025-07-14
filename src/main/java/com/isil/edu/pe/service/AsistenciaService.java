@@ -20,7 +20,7 @@ public class AsistenciaService {
         return asistenciaRepository.findAll();
     }
 
-    public AsistenciaModel obtenerAsistenciaPorId(Long id) throws ResourceNotFoundException {
+    public AsistenciaModel obtenerAsistenciaPorId(Integer id) throws ResourceNotFoundException {
         return asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
     }
@@ -29,19 +29,19 @@ public class AsistenciaService {
         return asistenciaRepository.save(asistencia);
     }
 
-    public AsistenciaModel actualizarAsistencia(Long id, AsistenciaModel asistenciaDetalles) throws ResourceNotFoundException {
+    public AsistenciaModel actualizarAsistencia(Integer id, AsistenciaModel asistenciaDetalles) throws ResourceNotFoundException {
         AsistenciaModel asistencia = asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
 
-        asistencia.setUsuarioID(asistenciaDetalles.getUsuarioID());
-        asistencia.setCursoSalonID(asistenciaDetalles.getCursoSalonID());
+        asistencia.setUsuario(asistenciaDetalles.getUsuario());
+        asistencia.setCursoSalon(asistenciaDetalles.getCursoSalon());
         asistencia.setFecha(asistenciaDetalles.getFecha());
         asistencia.setHoraRegistro(asistenciaDetalles.getHoraRegistro());
 
         return asistenciaRepository.save(asistencia);
     }
 
-    public void eliminarAsistencia(Long id) throws ResourceNotFoundException {
+    public void eliminarAsistencia(Integer id) throws ResourceNotFoundException {
         AsistenciaModel asistencia = asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
         

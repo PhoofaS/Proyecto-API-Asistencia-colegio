@@ -6,20 +6,22 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "Asistencia", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"usuarioID", "cursoSalonID", "fecha"})
+    @UniqueConstraint(columnNames = {"UsuarioID", "CursoSalonID", "Fecha"})
 })
 public class AsistenciaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "AsistenciaID")
-    private Long asistenciaID;
+    private Integer asistenciaID;
 
-    @Column(name = "UsuarioID", nullable = false)
-    private Long usuarioID;
+    @ManyToOne
+    @JoinColumn(name = "UsuarioID", nullable = false)
+    private UsuarioModel usuario;
 
-    @Column(name = "CursoSalonID", nullable = false)
-    private Long cursoSalonID;
+    @ManyToOne
+    @JoinColumn(name = "CursoSalonID", nullable = false)
+    private CursoSalonModel cursoSalon;
 
     @Column(name = "Fecha", nullable = false)
     private LocalDate fecha;
@@ -28,28 +30,29 @@ public class AsistenciaModel {
     private LocalTime horaRegistro;
 
     // Getters y Setters
-    public Long getAsistenciaID() {
+
+    public Integer getAsistenciaID() {
         return asistenciaID;
     }
 
-    public void setAsistenciaID(Long asistenciaID) {
+    public void setAsistenciaID(Integer asistenciaID) {
         this.asistenciaID = asistenciaID;
     }
 
-    public Long getUsuarioID() {
-        return usuarioID;
+    public UsuarioModel getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioID(Long usuarioID) {
-        this.usuarioID = usuarioID;
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
     }
 
-    public Long getCursoSalonID() {
-        return cursoSalonID;
+    public CursoSalonModel getCursoSalon() {
+        return cursoSalon;
     }
 
-    public void setCursoSalonID(Long cursoSalonID) {
-        this.cursoSalonID = cursoSalonID;
+    public void setCursoSalon(CursoSalonModel cursoSalon) {
+        this.cursoSalon = cursoSalon;
     }
 
     public LocalDate getFecha() {

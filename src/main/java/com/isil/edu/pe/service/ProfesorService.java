@@ -18,7 +18,7 @@ public class ProfesorService {
         return profesorRepository.findAll();
     }
 
-    public ProfesorModel obtenerProfesorPorId(Long id) throws ResourceNotFoundException {
+    public ProfesorModel obtenerProfesorPorId(Integer id) throws ResourceNotFoundException {
         return profesorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Profesor no encontrado con ID: " + id));
     }
@@ -27,7 +27,7 @@ public class ProfesorService {
         return profesorRepository.save(profesor);
     }
 
-    public ProfesorModel actualizarProfesor(Long id, ProfesorModel profesorDetalles) throws ResourceNotFoundException {
+    public ProfesorModel actualizarProfesor(Integer id, ProfesorModel profesorDetalles) throws ResourceNotFoundException {
         ProfesorModel profesor = profesorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Profesor no encontrado con ID: " + id));
 
@@ -39,7 +39,7 @@ public class ProfesorService {
         return profesorRepository.save(profesor);
     }
 
-    public void eliminarProfesor(Long id) throws ResourceNotFoundException {
+    public void eliminarProfesor(Integer id) throws ResourceNotFoundException {
         ProfesorModel profesor = profesorRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Profesor no encontrado con ID: " + id));
         profesorRepository.delete(profesor);

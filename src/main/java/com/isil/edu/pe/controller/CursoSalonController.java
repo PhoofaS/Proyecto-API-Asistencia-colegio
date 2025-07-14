@@ -23,7 +23,7 @@ public class CursoSalonController {
     }
 
     @GetMapping("/cursosalon/{id}")
-    public ResponseEntity<CursoSalonModel> getCursoSalonById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<CursoSalonModel> getCursoSalonById(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         CursoSalonModel cursoSalon = cursoSalonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("CursoSalon no encontrado con ID: " + id));
@@ -36,21 +36,21 @@ public class CursoSalonController {
     }
 
     @PutMapping("/cursosalon/{id}")
-    public ResponseEntity<CursoSalonModel> updateCursoSalon(@PathVariable Long id,
+    public ResponseEntity<CursoSalonModel> updateCursoSalon(@PathVariable Integer id,
             @Validated @RequestBody CursoSalonModel cursoSalonDetails) throws ResourceNotFoundException {
         CursoSalonModel cursoSalon = cursoSalonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("CursoSalon no encontrado con ID: " + id));
 
-        cursoSalon.setCursoID(cursoSalonDetails.getCursoID());
-        cursoSalon.setSalonID(cursoSalonDetails.getSalonID());
-        cursoSalon.setProfesorID(cursoSalonDetails.getProfesorID());
+        cursoSalon.setCurso(cursoSalonDetails.getCurso());
+        cursoSalon.setSalon(cursoSalonDetails.getSalon());
+        cursoSalon.setProfesor(cursoSalonDetails.getProfesor());
         cursoSalon.setFechaAsignacion(cursoSalonDetails.getFechaAsignacion());
 
         return ResponseEntity.ok(cursoSalonRepository.save(cursoSalon));
     }
 
     @DeleteMapping("/cursosalon/{id}")
-    public Map<String, Boolean> deleteCursoSalon(@PathVariable Long id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteCursoSalon(@PathVariable Integer id) throws ResourceNotFoundException {
         CursoSalonModel cursoSalon = cursoSalonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("CursoSalon no encontrado con ID: " + id));
 

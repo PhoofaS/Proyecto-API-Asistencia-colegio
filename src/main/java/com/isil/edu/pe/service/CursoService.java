@@ -18,7 +18,7 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
-    public CursoModel obtenerCursoPorId(Long id) throws ResourceNotFoundException {
+    public CursoModel obtenerCursoPorId(Integer id) throws ResourceNotFoundException {
         return cursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso no encontrado con ID: " + id));
     }
@@ -27,7 +27,7 @@ public class CursoService {
         return cursoRepository.save(curso);
     }
 
-    public CursoModel actualizarCurso(Long id, CursoModel cursoDetalles) throws ResourceNotFoundException {
+    public CursoModel actualizarCurso(Integer id, CursoModel cursoDetalles) throws ResourceNotFoundException {
         CursoModel curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso no encontrado con ID: " + id));
 
@@ -36,7 +36,7 @@ public class CursoService {
         return cursoRepository.save(curso);
     }
 
-    public void eliminarCurso(Long id) throws ResourceNotFoundException {
+    public void eliminarCurso(Integer id) throws ResourceNotFoundException {
         CursoModel curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso no encontrado con ID: " + id));
         cursoRepository.delete(curso);

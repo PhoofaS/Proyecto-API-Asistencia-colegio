@@ -9,17 +9,17 @@ public class CursoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CursoID")
-    private Long cursoID;
+    private Integer cursoID;
 
-    @Column(name = "NombreCurso", nullable = false, length = 100)
+    @Column(name = "NombreCurso", nullable = false)
     private String nombreCurso;
 
     // Getters y Setters
-    public Long getCursoID() {
+    public Integer getCursoID() {
         return cursoID;
     }
 
-    public void setCursoID(Long cursoID) {
+    public void setCursoID(Integer cursoID) {
         this.cursoID = cursoID;
     }
 

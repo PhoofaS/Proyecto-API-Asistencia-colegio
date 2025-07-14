@@ -33,7 +33,7 @@ public class ProfesorController {
 	}
 	
 	@GetMapping("/profesor/{ProfesorId}") // consulta y devuelve el empleado por ID
-	public ResponseEntity<ProfesorModel> getProfesorId(@PathVariable(value = "ProfesorId") Long ProfesorId)
+	public ResponseEntity<ProfesorModel> getProfesorId(@PathVariable(value = "ProfesorId") Integer ProfesorId)
 	         throws ResourceNotFoundException{
 		ProfesorModel profesor = profesorRepository.findById(ProfesorId).orElseThrow(()->
 		new  ResourceNotFoundException("Profesor no encontrado por ID: " + ProfesorId));
@@ -47,7 +47,7 @@ public class ProfesorController {
 	}
 	
 	@PutMapping("/profesor/{ProfesorId}")// se usa para actualizar los profesors
-	public  ResponseEntity<ProfesorModel> updateProfesor(@PathVariable(value = "ProfesorId")Long ProfesorId,
+	public  ResponseEntity<ProfesorModel> updateProfesor(@PathVariable(value = "ProfesorId")Integer ProfesorId,
 			@Validated @RequestBody ProfesorModel profesorDetails) throws ResourceNotFoundException{
 		
 	ProfesorModel profesor = profesorRepository.findById(ProfesorId)
@@ -61,7 +61,7 @@ public class ProfesorController {
 	}
 	
 	@DeleteMapping("/profesor/{ProfesorId}") // se utiliza para la eliminación del profesor por ID
-	public Map<String,Boolean> deleteProfesor(@PathVariable(value = "ProfesorId")Long ProfesorId)
+	public Map<String,Boolean> deleteProfesor(@PathVariable(value = "ProfesorId")Integer ProfesorId)
 	        throws ResourceNotFoundException
 	
 	{

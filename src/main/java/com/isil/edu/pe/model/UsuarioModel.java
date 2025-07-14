@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Usuario", uniqueConstraints = {
-    @UniqueConstraint(columnNames = "documentoIdentidad")
+    @UniqueConstraint(columnNames = "DocumentoIdentidad")
 })
 public class UsuarioModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UsuarioID")
-    private Long usuarioID;
+    private Integer usuarioID;
 
     @Column(name = "DocumentoIdentidad", nullable = false, length = 20, unique = true)
     private String documentoIdentidad;
@@ -27,11 +27,11 @@ public class UsuarioModel {
 
     // === Getters y Setters ===
 
-    public Long getUsuarioID() {
+    public Integer getUsuarioID() {
         return usuarioID;
     }
 
-    public void setUsuarioID(Long usuarioID) {
+    public void setUsuarioID(Integer usuarioID) {
         this.usuarioID = usuarioID;
     }
 
@@ -67,3 +67,5 @@ public class UsuarioModel {
         this.esAdministrador = esAdministrador;
     }
 }
+
+

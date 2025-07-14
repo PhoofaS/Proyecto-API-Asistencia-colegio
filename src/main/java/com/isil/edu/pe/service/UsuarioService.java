@@ -20,7 +20,7 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 	
-	public UsuarioModel obtenerUsuarioPorId(Long id) throws ResourceNotFoundException {
+	public UsuarioModel obtenerUsuarioPorId(Integer id) throws ResourceNotFoundException {
 		return usuarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + id));
 	}
@@ -29,7 +29,7 @@ public class UsuarioService {
 		return usuarioRepository.save(usuario);
 	}
 	
-	public UsuarioModel actualizarUsuario(Long id, UsuarioModel usuarioDetalles) throws ResourceNotFoundException {
+	public UsuarioModel actualizarUsuario(Integer id, UsuarioModel usuarioDetalles) throws ResourceNotFoundException {
 		UsuarioModel usuario = usuarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + id));
 		
@@ -40,7 +40,7 @@ public class UsuarioService {
 		
 		return usuarioRepository.save(usuario);
 	}
-	public void eliminarUsuario(Long id) throws ResourceNotFoundException {
+	public void eliminarUsuario(Integer id) throws ResourceNotFoundException {
 		UsuarioModel usuario = usuarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID :" + id));
 		usuarioRepository.delete(usuario);

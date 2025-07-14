@@ -30,11 +30,13 @@ public class UsuarioController {
 
     @GetMapping("/usuario")
     public List<UsuarioModel> getAllUsuarios() {
-        return usuarioRepository.findAll();
+        List<UsuarioModel> usuarios = usuarioRepository.findAll();
+        System.out.println("Usuarios encontrados: " + usuarios.size());
+        return usuarios;
     }
 
     @GetMapping("/usuario/{id}")
-    public ResponseEntity<UsuarioModel> getUsuarioById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<UsuarioModel> getUsuarioById(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         UsuarioModel usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado: " + id));
@@ -47,7 +49,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/usuario/{id}")
-    public ResponseEntity<UsuarioModel> updateUsuario(@PathVariable Long id,
+    public ResponseEntity<UsuarioModel> updateUsuario(@PathVariable Integer id,
             @Validated @RequestBody UsuarioModel usuarioDetails) throws ResourceNotFoundException {
 
         UsuarioModel usuario = usuarioRepository.findById(id)
@@ -63,7 +65,7 @@ public class UsuarioController {
 
 
     @DeleteMapping("/usuario/{id}")
-    public Map<String, Boolean> deleteUsuario(@PathVariable Long id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteUsuario(@PathVariable Integer id) throws ResourceNotFoundException {
         UsuarioModel usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado: " + id));
         usuarioRepository.delete(usuario);

@@ -20,7 +20,7 @@ public class SalonService {
 		return salonRepository.findAll();
 	}
 	
-	public SalonModel obtenerSalonPorId(Long id) throws ResourceNotFoundException {
+	public SalonModel obtenerSalonPorId(Integer id) throws ResourceNotFoundException {
 		return salonRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Salon no encontrado con ID: " + id));
 	}
@@ -29,7 +29,7 @@ public class SalonService {
 		return salonRepository.save(salon);
 	}
 	
-	public SalonModel actualizarSalon(Long id, SalonModel salonDetalles) throws ResourceNotFoundException {
+	public SalonModel actualizarSalon(Integer id, SalonModel salonDetalles) throws ResourceNotFoundException {
 		SalonModel salon = salonRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Salon no encontrado con ID: " + id));
 		
@@ -37,7 +37,7 @@ public class SalonService {
 		
 		return salonRepository.save(salon);
 	}
-	public void eliminarSalon(Long id) throws ResourceNotFoundException {
+	public void eliminarSalon(Integer id) throws ResourceNotFoundException {
 		SalonModel salon = salonRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Salon no encontrado con ID :" + id));
 		salonRepository.delete(salon);

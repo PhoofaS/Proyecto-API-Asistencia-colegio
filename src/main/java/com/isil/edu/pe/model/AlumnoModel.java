@@ -1,72 +1,64 @@
 package com.isil.edu.pe.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="alumno")
+@Table(name = "Alumno")
 public class AlumnoModel {
 
-	private Long AlumnoId;
-	private String Nombre;
-	private String Apellido;
-	private Long UsuarioId;
+    @Id
+    @Column(name = "AlumnoID")
+    private Integer alumnoId;
 
-private AlumnoModel() {
-	
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "AlumnoID", referencedColumnName = "UsuarioID")
+    private UsuarioModel usuario;
+
+    @Column(name = "Nombre", nullable = false)
+    private String nombre;
+
+    @Column(name = "Apellido", nullable = false)
+    private String apellido;
+
+    public AlumnoModel() {}
+
+    public AlumnoModel(UsuarioModel usuario, String nombre, String apellido) {
+        this.usuario = usuario;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
+    public Integer getAlumnoId() {
+        return alumnoId;
+    }
+
+    public void setAlumnoId(Integer alumnoId) {
+        this.alumnoId = alumnoId;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 }
 
-public AlumnoModel(Long alumnoId, String nombre, String apellido, Long usuarioId) {
-	super();
-	this.AlumnoId = alumnoId;
-	this.Nombre = nombre;
-	this.Apellido = apellido;
-	this.UsuarioId = usuarioId;
-}
-
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-
-public Long getAlumnoId() {
-	return AlumnoId;
-}
-
-public void setAlumnoId(Long alumnoId) {
-	AlumnoId = alumnoId;
-}
-
-@Column(name="Nombre", nullable=false)
-
-public String getNombre() {
-	return Nombre;
-}
-
-public void setNombre(String nombre) {
-	Nombre = nombre;
-}
-
-@Column(name="Apellido", nullable=false)
-
-public String getApellido() {
-	return Apellido;
-}
-
-public void setApellido(String apellido) {
-	Apellido = apellido;
-}
-
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-
-public Long getUsuarioId() {
-	return UsuarioId;
-}
-
-public void setUsuarioId(Long usuarioId) {
-	UsuarioId = usuarioId;
-}
-}

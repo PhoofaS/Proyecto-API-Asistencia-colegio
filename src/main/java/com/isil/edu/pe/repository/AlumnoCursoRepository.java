@@ -3,5 +3,5 @@ package com.isil.edu.pe.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.isil.edu.pe.model.AlumnoCursoModel;
 
-public interface AlumnoCursoRepository extends JpaRepository<AlumnoCursoModel, Long> {
+public interface AlumnoCursoRepository extends JpaRepository<AlumnoCursoModel, Integer> {
 }

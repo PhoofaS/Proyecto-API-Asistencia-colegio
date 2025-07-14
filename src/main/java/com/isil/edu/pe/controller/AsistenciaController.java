@@ -25,7 +25,7 @@ public class AsistenciaController {
 
     // Obtener asistencia por ID
     @GetMapping("/asistencia/{id}")
-    public ResponseEntity<AsistenciaModel> getAsistenciaById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<AsistenciaModel> getAsistenciaById(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         AsistenciaModel asistencia = asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
@@ -40,13 +40,13 @@ public class AsistenciaController {
 
     // Actualizar asistencia existente
     @PutMapping("/asistencia/{id}")
-    public ResponseEntity<AsistenciaModel> updateAsistencia(@PathVariable Long id,
+    public ResponseEntity<AsistenciaModel> updateAsistencia(@PathVariable Integer id,
             @Validated @RequestBody AsistenciaModel asistenciaDetails) throws ResourceNotFoundException {
         AsistenciaModel asistencia = asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
 
-        asistencia.setUsuarioID(asistenciaDetails.getUsuarioID());
-        asistencia.setCursoSalonID(asistenciaDetails.getCursoSalonID());
+        asistencia.setUsuario(asistenciaDetails.getUsuario());
+        asistencia.setCursoSalon(asistenciaDetails.getCursoSalon());
         asistencia.setFecha(asistenciaDetails.getFecha());
         asistencia.setHoraRegistro(asistenciaDetails.getHoraRegistro());
 
@@ -55,7 +55,7 @@ public class AsistenciaController {
 
     // Eliminar asistencia
     @DeleteMapping("/asistencia/{id}")
-    public Map<String, Boolean> deleteAsistencia(@PathVariable Long id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteAsistencia(@PathVariable Integer id) throws ResourceNotFoundException {
         AsistenciaModel asistencia = asistenciaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asistencia no encontrada con ID: " + id));
 
@@ -65,3 +65,4 @@ public class AsistenciaController {
         return response;
     }
 }
+

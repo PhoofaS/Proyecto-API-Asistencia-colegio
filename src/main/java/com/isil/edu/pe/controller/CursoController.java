@@ -25,7 +25,7 @@ public class CursoController {
 
     // Obtener curso por ID
     @GetMapping("/curso/{id}")
-    public ResponseEntity<CursoModel> getCursoById(@PathVariable(value = "id") Long id)
+    public ResponseEntity<CursoModel> getCursoById(@PathVariable(value = "id") Integer id)
             throws ResourceNotFoundException {
         CursoModel curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso no encontrado con ID: " + id));
@@ -40,7 +40,7 @@ public class CursoController {
 
     // Actualizar curso existente
     @PutMapping("/curso/{id}")
-    public ResponseEntity<CursoModel> updateCurso(@PathVariable Long id,
+    public ResponseEntity<CursoModel> updateCurso(@PathVariable Integer id,
             @Validated @RequestBody CursoModel cursoDetails) throws ResourceNotFoundException {
         CursoModel curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso no encontrado con ID: " + id));
@@ -51,7 +51,7 @@ public class CursoController {
 
     // Eliminar curso
     @DeleteMapping("/curso/{id}")
-    public Map<String, Boolean> deleteCurso(@PathVariable Long id) throws ResourceNotFoundException {
+    public Map<String, Boolean> deleteCurso(@PathVariable Integer id) throws ResourceNotFoundException {
         CursoModel curso = cursoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Curso no encontrado con ID: " + id));
 

@@ -1,83 +1,91 @@
 package com.isil.edu.pe.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name="profesor")
+@Table(name = "Profesor")
 public class ProfesorModel {
 
-	private Long ProfesorId;
-	private String Nombre;
-	private String Apellido;
-	private String CorreoElectronico;
-  private Long Telefono;
+    @Id
+    @Column(name = "ProfesorID")
+    private Integer profesorID;
 
-private ProfesorModel() {
-	
-}
+    @OneToOne
+    @JoinColumn(name = "ProfesorID", referencedColumnName = "UsuarioID", insertable = false, updatable = false)
+    private UsuarioModel usuario;
 
-public ProfesorModel(Long ProfesorId, String Nombre, String Apellido, String CorreoElectronico, Long Telefono) {
-	super();
-	this.ProfesorId = ProfesorId;
-	this.Nombre = Nombre;
-	this.Apellido = Apellido;
-  this.CorreoElectronico = CorreoElectronico;
-	this.Telefono = Telefono;
-}
+    @Column(name = "Nombre", nullable = false)
+    private String nombre;
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Apellido", nullable = false)
+    private String apellido;
 
-public Long getProfesorId() {
-	return ProfesorId;
-}
+    @Column(name = "CorreoElectronico")
+    private String correoElectronico;
 
-public void setProfesorId(Long NuevoProfesorId) {
-	ProfesorId = NuevoProfesorId;
-}
+    @Column(name = "Telefono")
+    private String telefono;
 
-@Column(name="Nombre", nullable=false)
+    // === Constructores ===
 
-public String getNombre() {
-	return Nombre;
-}
+    public ProfesorModel() {
+    }
 
-public void setNombre(String NuevoNombre) {
-	Nombre = NuevoNombre;
-}
+    public ProfesorModel(Integer profesorID, String nombre, String apellido, String correoElectronico, String telefono) {
+        this.profesorID = profesorID;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correoElectronico = correoElectronico;
+        this.telefono = telefono;
+    }
 
-@Column(name="Apellido", nullable=false)
+    // === Getters y Setters ===
 
-public String getApellido() {
-	return Apellido;
-}
+    public Integer getProfesorID() {
+        return profesorID;
+    }
 
-public void setApellido(String NuevoApellido) {
-	Apellido = NuevoApellido;
-}
+    public void setProfesorID(Integer profesorID) {
+        this.profesorID = profesorID;
+    }
 
-@Column(name="CorreoElectronico", nullable=false)
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
 
-public String getCorreoElectronico() {
-	return CorreoElectronico;
-}
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
 
-public void setCorreoElectronico(String NuevoCorreoElectronico) {
-	CorreoElectronico = NuevoCorreoElectronico;
-}
-  
-@Column(name = "telefono")
-  
-public Long getTelefono() {
-  return Telefono;
-}
+    public String getNombre() {
+        return nombre;
+    }
 
-public void setTelefono(Long telefono) {
-  this.Telefono = telefono;
-}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 }

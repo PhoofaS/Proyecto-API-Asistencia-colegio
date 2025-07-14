@@ -9,17 +9,17 @@ public class SalonModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SalonID")
-    private Long salonID;
+    private Integer salonID;
 
-    @Column(name = "NombreSalon", nullable = false, length = 50)
+    @Column(name = "NombreSalon", nullable = false)
     private String nombreSalon;
 
     // Getters y Setters
-    public Long getSalonID() {
+    public Integer getSalonID() {
         return salonID;
     }
 
-    public void setSalonID(Long salonID) {
+    public void setSalonID(Integer salonID) {
         this.salonID = salonID;
     }
 

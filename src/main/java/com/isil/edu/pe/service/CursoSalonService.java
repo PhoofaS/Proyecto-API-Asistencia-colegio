@@ -18,7 +18,7 @@ public class CursoSalonService {
         return cursoSalonRepository.findAll();
     }
 
-    public CursoSalonModel obtenerCursoSalonPorId(Long id) throws ResourceNotFoundException {
+    public CursoSalonModel obtenerCursoSalonPorId(Integer id) throws ResourceNotFoundException {
         return cursoSalonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Curso-Salón no encontrada con ID: " + id));
     }
@@ -27,19 +27,18 @@ public class CursoSalonService {
         return cursoSalonRepository.save(cursoSalon);
     }
 
-    public CursoSalonModel actualizarCursoSalon(Long id, CursoSalonModel cursoSalonDetalles) throws ResourceNotFoundException {
+    public CursoSalonModel actualizarCursoSalon(Integer id, CursoSalonModel cursoSalonDetalles) throws ResourceNotFoundException {
         CursoSalonModel cursoSalon = cursoSalonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Curso-Salón no encontrada con ID: " + id));
 
-        cursoSalon.setCursoID(cursoSalonDetalles.getCursoID());
-        cursoSalon.setSalonID(cursoSalonDetalles.getSalonID());
-        cursoSalon.setProfesorID(cursoSalonDetalles.getProfesorID());
+        cursoSalon.setCurso(cursoSalonDetalles.getCurso());
+        cursoSalon.setSalon(cursoSalonDetalles.getSalon());  // Corregido
+        cursoSalon.setProfesor(cursoSalonDetalles.getProfesor());
         cursoSalon.setFechaAsignacion(cursoSalonDetalles.getFechaAsignacion());
 
         return cursoSalonRepository.save(cursoSalon);
     }
-
-    public void eliminarCursoSalon(Long id) throws ResourceNotFoundException {
+    public void eliminarCursoSalon(Integer id) throws ResourceNotFoundException {
         CursoSalonModel cursoSalon = cursoSalonRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Asignación Curso-Salón no encontrada con ID: " + id));
         cursoSalonRepository.delete(cursoSalon);
